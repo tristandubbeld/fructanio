@@ -68,25 +68,49 @@ const data = [
       },
       {
         name: "Gierstmeel",
-        green: "-",
+        green: "100",
         orange: "-",
         red: "-",
       },
       {
-        name: "Havermout & havermout*",
+        name: "Havermeel & havermout",
         green: "60",
         orange: "70",
         red: "85",
       },
       {
-        name: "Tapiocameel",
+        name: "Haverzemelen",
         green: "22",
+        orange: "-",
+        red: "-",
+      },
+      {
+        name: "Tapiocameel",
+        green: "100",
         orange: "-",
         red: "-",
       },
       {
         name: "Tarwemeel",
         green: "-",
+        orange: "-",
+        red: "100",
+      },
+      {
+        name: "Tarwezemelen",
+        green: "5",
+        orange: "7",
+        red: "10",
+      },
+      {
+        name: "Tarwebrood volkoren, wraps/pita/naan/roti etc.",
+        green: "24",
+        orange: "35",
+        red: "48",
+      },
+      {
+        name: "Teff meel",
+        green: "100",
         orange: "-",
         red: "-",
       },
@@ -121,7 +145,7 @@ const data = [
         red: "-",
       },
       {
-        name: "Maizetmeel (maizena)",
+        name: "Maiszetmeel (maizena)",
         green: "100",
         orange: "-",
         red: "-",
@@ -139,13 +163,13 @@ const data = [
         red: "125",
       },
       {
-        name: "Rijstmeel/gekookte rijst",
+        name: "Rijstmeel / gekookte rijst",
         green: "100",
         orange: "-",
         red: "-",
       },
       {
-        name: "Rijst gepoft (rijstwafel 7)",
+        name: "Rijst gepoft (rijstwafel 7 = gram)",
         green: "15",
         orange: "-",
         red: "30",
@@ -163,6 +187,12 @@ const data = [
         red: "43",
       },
       {
+        name: "Sojameel",
+        green: "**",
+        orange: "-",
+        red: "100",
+      },
+      {
         name: "Speltbrood***",
         green: "70",
         orange: "-",
@@ -175,7 +205,7 @@ const data = [
         red: "-",
       },
       {
-        name: "Speltmeel zeefted en producten van spelt",
+        name: "Speltmeel gezeefd en producten van spelt",
         green: "100",
         orange: "-",
         red: "-",
@@ -191,12 +221,6 @@ const data = [
         green: "30",
         orange: "40",
         red: "50",
-      },
-      {
-        name: "Teff meel",
-        green: "100",
-        orange: "-",
-        red: "-",
       },
       {
         name: "Quinoa/meel",
@@ -225,7 +249,7 @@ const data = [
         name: "Artisjok heel op olie",
         green: "10",
         orange: "15",
-        red: "20"
+        red: "50"
       },
       {
         name: "Artisjok vers",
@@ -237,7 +261,7 @@ const data = [
         name: "Asperges",
         green: "-",
         orange: "15",
-        red: "-"
+        red: "75"
       },
       {
         name: "Bietjes uit blik/pakje",
@@ -255,7 +279,7 @@ const data = [
         name: "Chilipeper",
         green: "28",
         orange: "35",
-        red: "75"
+        red: "-"
       },
       {
         name: "Courgette",
@@ -278,14 +302,14 @@ const data = [
       {
         name: "Knoflookpoeder",
         green: "-",
-        orange: "-",
-        red: "> 1"
+        orange: "> 1",
+        red: "2"
       },
       {
         name: "Knoflook vers",
         green: "-",
         orange: "-",
-        red: "75"
+        red: "3"
       },
       {
         name: "Kool rood",
@@ -301,9 +325,9 @@ const data = [
       },
       {
         name: "Kool savooien",
-        green: "47",
-        orange: "75",
-        red: "-"
+        green: "40",
+        orange: "55",
+        red: "75"
       },
       {
         name: "Kool Chinese",
@@ -321,7 +345,7 @@ const data = [
         name: "Peultjes (mange tout)",
         green: "17",
         orange: "25",
-        red: "37"
+        red: "75"
       },
       {
         name: "Prei groene gedeelte",
@@ -351,7 +375,7 @@ const data = [
         name: "Tomaten cherry",
         green: "75",
         orange: "220",
-        red: "230"
+        red: "-"
       },
       {
         name: "Tomaten roma",
@@ -361,9 +385,9 @@ const data = [
       },
       {
         name: "Uien lente (witte gedeelte)",
-        green: "75",
+        green: "-",
         orange: "-",
-        red: "-"
+        red: "32"
       },
       {
         name: "Uien lente (groene gedeelte)",
@@ -372,7 +396,7 @@ const data = [
         red: "-"
       },
       {
-        name: "Uien rood (Spaanse uit)",
+        name: "Uien rood (Spaanse ui)",
         green: "-",
         orange: "-",
         red: "75"
@@ -386,8 +410,8 @@ const data = [
       {
         name: "Uien witte",
         green: "-",
-        orange: "-",
-        red: "12"
+        orange: "12",
+        red: "75"
       },
       {
         name: "Venkel steeltjes",
@@ -427,152 +451,182 @@ const data = [
       {
         name: "Abrikoos vers",
         green: "25",
-        orange: "40",
-        red: "50"
+        orange: "70",
+        red: "-"
       },
       {
         name: "Abrikoos gedroogd",
-        green: "25",
-        orange: "70",
-        red: "150"
-      },
-      {
-        name: "Ananas gedroogd",
-        green: "25",
-        orange: "65",
-        red: "150"
-      },
-      {
-        name: "Banaan vers",
-        green: "105",
-        orange: "286",
-        red: "-"
-      },
-      {
-        name: "Banaan rijp",
-        green: "64",
-        orange: "267",
-        red: "-"
-      },
-      {
-        name: "Banaan chips",
         green: "-",
         orange: "-",
         red: "30"
       },
       {
-        name: "Cranberries gedroogd",
-        green: "30",
-        orange: "50",
-        red: "60"
+        name: "Ananas",
+        green: "140",
+        orange: "200",
+        red: "-"
       },
       {
-        name: "Cranberries gedroogd met pit",
-        green: "25",
-        orange: "45",
+        name: "Ananas gedroogd",
+        green: "-",
+        orange: "25",
         red: "50"
       },
       {
+        name: "Banaan rijp",
+        green: "35",
+        orange: "45",
+        red: "100"
+      },
+      {
+        name: "Bananen chips",
+        green: "30",
+        orange: "34",
+        red: "40"
+      },
+      {
+        name: "Cantaloupe meloen",
+        green: "120",
+        orange: "150",
+        red: "-"
+      },
+      {
+        name: "Cranberries",
+        green: "50",
+        orange: "135",
+        red: "165"
+      },
+      {
+        name: "Cranberries gedroogd",
+        green: "15",
+        orange: "23",
+        red: "30"
+      },
+      {
+        name: "Dadels",
+        green: "8",
+        orange: "10",
+        red: "30"
+      },
+      {
+        name: "Dadels gedroogd met pit",
+        green: "8",
+        orange: "10",
+        red: "30"
+      },
+      {
         name: "Framboos",
-        green: "40",
-        orange: "125",
-        red: "150"
+        green: "60",
+        orange: "65",
+        red: "135"
       },
       {
         name: "Gojibessen gedroogd",
-        green: "50",
-        orange: "125",
-        red: "150"
+        green: "10",
+        orange: "15",
+        red: "24"
+      },
+      {
+        name: "Granaatappel",
+        green: "45",
+        orange: "55",
+        red: "87"
       },
       {
         name: "Grapefruit zonder schil",
-        green: "50",
-        orange: "126",
+        green: "80",
+        orange: "100",
         red: "207"
       },
       {
         name: "Honingmeloen",
         green: "90",
-        orange: "150",
-        red: "200"
+        orange: "100",
+        red: "150"
       },
       {
         name: "Kiwi gold",
-        green: "105",
-        orange: "150",
-        red: "286"
+        green: "150",
+        orange: "195",
+        red: "-"
       },
       {
         name: "Kiwi groen",
-        green: "46",
-        orange: "100",
-        red: "195"
+        green: "150",
+        orange: "286",
+        red: "-"
       },
       {
-        name: "Kokosvlees (vruchtvlees + rasp, kokos kan wel)",
-        green: "48",
-        orange: "150",
+        name: "Kokoswater (vruchtvlees + rasp, kokos kan wel)",
+        green: "105",
+        orange: "158",
         red: "267"
       },
       {
         name: "Lychee",
-        green: "25",
-        orange: "80",
-        red: "100"
+        green: "48",
+        orange: "64",
+        red: "96"
       },
       {
         name: "Mango gedroogd",
-        green: "25",
-        orange: "80",
-        red: "150"
+        green: "-",
+        orange: "-",
+        red: "20"
       },
       {
-        name: "Mango vers",
-        green: "13",
-        orange: "16",
-        red: "-"
+        name: "Nectarines",
+        green: "25",
+        orange: "-",
+        red: "150"
       },
       {
         name: "Passievrucht",
-        green: "-",
+        green: "46",
+        orange: "100",
+        red: "126"
+      },
+      {
+        name: "Pruim",
+        green: "10",
         orange: "-",
-        red: "145"
+        red: "66"
       },
       {
         name: "Pruim gedroogd",
-        green: "20",
-        orange: "60",
-        red: "150"
-      },
-      {
-        name: "Rozijn",
         green: "-",
         orange: "-",
-        red: "150"
+        red: "30"
+      },
+      {
+        name: "Rozijnen",
+        green: "13",
+        orange: "16",
+        red: "30"
       },
       {
         name: "Sharon fruit (of kaki)",
-        green: "20",
-        orange: "60",
-        red: "150"
+        green: "60",
+        orange: "65",
+        red: "75"
       },
       {
         name: "Vijg gedroogd (bijv. in vijgenbrood)",
         green: "-",
         orange: "-",
-        red: "145"
+        red: "30"
       },
       {
         name: "Watermeloen",
-        green: "150",
-        orange: "180",
-        red: "200"
+        green: "20",
+        orange: "-",
+        red: "150"
       },
       {
         name: "Witte perzik",
-        green: "65",
-        orange: "150",
-        red: "250"
+        green: "20",
+        orange: "-",
+        red: "145"
       }
     ]
   },
@@ -600,7 +654,7 @@ const data = [
       {
         name: "Edamame (sojabonen)",
         green: "90",
-        orange: "89",
+        orange: "210",
         red: "-"
       },
       {
@@ -655,7 +709,7 @@ const data = [
         name: "Vleesvervangers op sojabasis",
         green: "50",
         orange: "100",
-        red: "150"
+        red: "-"
       },
       {
         name: "Zwarte bonen",
