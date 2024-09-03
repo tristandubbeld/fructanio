@@ -783,9 +783,9 @@ export const SearchTable = () => {
             results.map(({ name, green, orange, red }) => (
               <TableRow key={name}>
                 <TableCell>{name}</TableCell>
-                <TableCell className="text-center text-green-700">{green}</TableCell>
-                <TableCell className="text-center text-orange-700">{orange}</TableCell>
-                <TableCell className="text-center text-red-700">{red}</TableCell>
+                <TableCell className="text-center text-green-600">{green}</TableCell>
+                <TableCell className="text-center text-orange-500">{orange}</TableCell>
+                <TableCell className="text-center text-red-500">{red}</TableCell>
               </TableRow>
             ))
           : data.map(({ category, items }) => (
@@ -799,9 +799,9 @@ export const SearchTable = () => {
               {items.map(({ name, green, orange, red }) => (
                 <TableRow key={name}>
                   <TableCell>{name}</TableCell>
-                  <TableCell className="text-center text-green-700">{green}</TableCell>
-                  <TableCell className="text-center text-orange-700">{orange}</TableCell>
-                  <TableCell className="text-center text-red-700">{red}</TableCell>
+                  <TableCell className="text-center text-green-600">{green}</TableCell>
+                  <TableCell className="text-center text-orange-500">{orange}</TableCell>
+                  <TableCell className="text-center text-red-500">{red}</TableCell>
                 </TableRow>
               ))}
             </Fragment>
