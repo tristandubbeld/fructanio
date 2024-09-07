@@ -1,18 +1,19 @@
-'use client'
+"use client";
 
 import Fuse from "fuse.js";
 import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
 import { Fragment, useState } from "react";
+import { Button } from "./ui/button";
+import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
 
 const data = [
   {
@@ -77,6 +78,8 @@ const data = [
         green: "60",
         orange: "70",
         red: "85",
+        annotation:
+          "1 of 2 haverkoekjes of haverboterhammen zullen waarschijnlijk geen klachten geven.",
       },
       {
         name: "Haverzemelen",
@@ -188,33 +191,43 @@ const data = [
       },
       {
         name: "Sojameel",
-        green: "**",
+        green: "-",
         orange: "-",
         red: "100",
+        annotation:
+          "Zeer kleine hoeveelheden sojameel geven waarschijnlijk geen klachten.",
       },
       {
-        name: "Speltbrood***",
+        name: "Speltbrood",
         green: "70",
         orange: "-",
         red: "-",
+        annotation:
+          "Spelt is lager in Fructanen dan tarwe, maar bevat nog wel Fructanen. Hangt ook af van het bewerkingsproces.",
       },
       {
         name: "Speltmuesli",
         green: "45",
         orange: "-",
         red: "-",
+        annotation:
+          "Spelt is lager in Fructanen dan tarwe, maar bevat nog wel Fructanen. Hangt ook af van het bewerkingsproces.",
       },
       {
         name: "Speltmeel gezeefd en producten van spelt",
         green: "100",
         orange: "-",
         red: "-",
+        annotation:
+          "Spelt is lager in Fructanen dan tarwe, maar bevat nog wel Fructanen. Hangt ook af van het bewerkingsproces.",
       },
       {
         name: "Speltmeel overig en producten van spelt",
         green: "-",
         orange: "-",
         red: "100",
+        annotation:
+          "Spelt is lager in Fructanen dan tarwe, maar bevat nog wel Fructanen. Hangt ook af van het bewerkingsproces.",
       },
       {
         name: "Spelt eierkoek",
@@ -237,213 +250,213 @@ const data = [
         name: "Aardperen / Jeruzalem artisjok",
         green: "-",
         orange: "-",
-        red: "75"
+        red: "75",
       },
       {
         name: "Artisjokhart",
         green: "75",
         orange: "160",
-        red: "225"
+        red: "225",
       },
       {
         name: "Artisjok heel op olie",
         green: "10",
         orange: "15",
-        red: "50"
+        red: "50",
       },
       {
         name: "Artisjok vers",
         green: "15",
         orange: "18",
-        red: "75"
+        red: "75",
       },
       {
         name: "Asperges",
         green: "-",
         orange: "15",
-        red: "75"
+        red: "75",
       },
       {
         name: "Bietjes uit blik/pakje",
         green: "60",
         orange: "120",
-        red: "155"
+        red: "155",
       },
       {
         name: "Bieten vers",
         green: "20",
         orange: "30",
-        red: "75"
+        red: "75",
       },
       {
         name: "Chilipeper",
         green: "28",
         orange: "35",
-        red: "-"
+        red: "-",
       },
       {
         name: "Courgette",
         green: "65",
         orange: "75",
-        red: "-"
+        red: "-",
       },
       {
         name: "Doperwten vers/diepvries",
         green: "15",
         orange: "20",
-        red: "75"
+        red: "75",
       },
       {
         name: "Doperwten uit blik/pot uitgelekt",
         green: "45",
         orange: "55",
-        red: "75"
+        red: "75",
       },
       {
         name: "Knoflookpoeder",
         green: "-",
         orange: "> 1",
-        red: "2"
+        red: "2",
       },
       {
         name: "Knoflook vers",
         green: "-",
         orange: "-",
-        red: "3"
+        red: "3",
       },
       {
         name: "Kool rood",
         green: "75",
         orange: "150",
-        red: "180"
+        red: "180",
       },
       {
         name: "Kool rood (ingemaakt in zuur)",
         green: "75",
         orange: "140",
-        red: "-"
+        red: "-",
       },
       {
         name: "Kool savooien",
         green: "40",
         orange: "55",
-        red: "75"
+        red: "75",
       },
       {
         name: "Kool Chinese",
         green: "75",
         orange: "500",
-        red: "-"
+        red: "-",
       },
       {
         name: "Okra",
         green: "75",
         orange: "90",
-        red: "100"
+        red: "100",
       },
       {
         name: "Peultjes (mange tout)",
         green: "17",
         orange: "25",
-        red: "75"
+        red: "75",
       },
       {
         name: "Prei groene gedeelte",
         green: "55",
         orange: "75",
-        red: "85"
+        red: "85",
       },
       {
         name: "Prei witte gedeelte",
         green: "14",
         orange: "18",
-        red: "75"
+        red: "75",
       },
       {
         name: "Spinazie baby",
         green: "75",
         orange: "150",
-        red: "-"
+        red: "-",
       },
       {
         name: "Spruitjes",
         green: "40",
         orange: "60",
-        red: "75"
+        red: "75",
       },
       {
         name: "Tomaten cherry",
         green: "75",
         orange: "220",
-        red: "-"
+        red: "-",
       },
       {
         name: "Tomaten roma",
         green: "75",
         orange: "250",
-        red: "300"
+        red: "300",
       },
       {
         name: "Uien lente (witte gedeelte)",
         green: "-",
         orange: "-",
-        red: "32"
+        red: "32",
       },
       {
         name: "Uien lente (groene gedeelte)",
         green: "75",
         orange: "-",
-        red: "-"
+        red: "-",
       },
       {
         name: "Uien rood (Spaanse ui)",
         green: "-",
         orange: "-",
-        red: "75"
+        red: "75",
       },
       {
         name: "Uien sjalot",
         green: "-",
         orange: "-",
-        red: "6"
+        red: "6",
       },
       {
         name: "Uien witte",
         green: "-",
         orange: "12",
-        red: "75"
+        red: "75",
       },
       {
         name: "Venkel steeltjes",
         green: "15",
         orange: "85",
-        red: "100"
+        red: "100",
       },
       {
         name: "Venkelknol",
         green: "50",
         orange: "60",
-        red: "75"
+        red: "75",
       },
       {
         name: "Witte champignons",
         green: "37",
         orange: "75",
-        red: "-"
+        red: "-",
       },
       {
         name: "Yam",
         green: "75",
         orange: "300",
-        red: "350"
+        red: "350",
       },
       {
         name: "Zouten, kruidenmixen met ui en knoflook",
         green: "-",
         orange: "-",
-        red: "2"
-      }
-    ]
+        red: "2",
+      },
+    ],
   },
   {
     category: "Fruit",
@@ -452,183 +465,183 @@ const data = [
         name: "Abrikoos vers",
         green: "25",
         orange: "70",
-        red: "-"
+        red: "-",
       },
       {
         name: "Abrikoos gedroogd",
         green: "-",
         orange: "-",
-        red: "30"
+        red: "30",
       },
       {
         name: "Ananas",
         green: "140",
         orange: "200",
-        red: "-"
+        red: "-",
       },
       {
         name: "Ananas gedroogd",
         green: "-",
         orange: "25",
-        red: "50"
+        red: "50",
       },
       {
         name: "Banaan rijp",
         green: "35",
         orange: "45",
-        red: "100"
+        red: "100",
       },
       {
         name: "Bananen chips",
         green: "30",
         orange: "34",
-        red: "40"
+        red: "40",
       },
       {
         name: "Cantaloupe meloen",
         green: "120",
         orange: "150",
-        red: "-"
+        red: "-",
       },
       {
         name: "Cranberries",
         green: "50",
         orange: "135",
-        red: "165"
+        red: "165",
       },
       {
         name: "Cranberries gedroogd",
         green: "15",
         orange: "23",
-        red: "30"
+        red: "30",
       },
       {
         name: "Dadels",
         green: "8",
         orange: "10",
-        red: "30"
+        red: "30",
       },
       {
         name: "Dadels gedroogd met pit",
         green: "8",
         orange: "10",
-        red: "30"
+        red: "30",
       },
       {
         name: "Framboos",
         green: "60",
         orange: "65",
-        red: "135"
+        red: "135",
       },
       {
         name: "Gojibessen gedroogd",
         green: "10",
         orange: "15",
-        red: "24"
+        red: "24",
       },
       {
         name: "Granaatappel",
         green: "45",
         orange: "55",
-        red: "87"
+        red: "87",
       },
       {
         name: "Grapefruit zonder schil",
         green: "80",
         orange: "100",
-        red: "207"
+        red: "207",
       },
       {
         name: "Honingmeloen",
         green: "90",
         orange: "100",
-        red: "150"
+        red: "150",
       },
       {
         name: "Kiwi gold",
         green: "150",
         orange: "195",
-        red: "-"
+        red: "-",
       },
       {
         name: "Kiwi groen",
         green: "150",
         orange: "286",
-        red: "-"
+        red: "-",
       },
       {
         name: "Kokoswater (vruchtvlees + rasp, kokos kan wel)",
         green: "105",
         orange: "158",
-        red: "267"
+        red: "267",
       },
       {
         name: "Lychee",
         green: "48",
         orange: "64",
-        red: "96"
+        red: "96",
       },
       {
         name: "Mango gedroogd",
         green: "-",
         orange: "-",
-        red: "20"
+        red: "20",
       },
       {
         name: "Nectarines",
         green: "25",
         orange: "-",
-        red: "150"
+        red: "150",
       },
       {
         name: "Passievrucht",
         green: "46",
         orange: "100",
-        red: "126"
+        red: "126",
       },
       {
         name: "Pruim",
         green: "10",
         orange: "-",
-        red: "66"
+        red: "66",
       },
       {
         name: "Pruim gedroogd",
         green: "-",
         orange: "-",
-        red: "30"
+        red: "30",
       },
       {
         name: "Rozijnen",
         green: "13",
         orange: "16",
-        red: "30"
+        red: "30",
       },
       {
         name: "Sharon fruit (of kaki)",
         green: "60",
         orange: "65",
-        red: "75"
+        red: "75",
       },
       {
         name: "Vijg gedroogd (bijv. in vijgenbrood)",
         green: "-",
         orange: "-",
-        red: "30"
+        red: "30",
       },
       {
         name: "Watermeloen",
         green: "20",
         orange: "-",
-        red: "150"
+        red: "150",
       },
       {
         name: "Witte perzik",
         green: "20",
         orange: "-",
-        red: "145"
-      }
-    ]
+        red: "145",
+      },
+    ],
   },
   {
     category: "Peulvruchten",
@@ -637,87 +650,87 @@ const data = [
         name: "Bruine bonen",
         green: "40",
         orange: "150",
-        red: "-"
+        red: "-",
       },
       {
         name: "Bonen (black eyed peas)",
         green: "22",
         orange: "-",
-        red: "170"
+        red: "170",
       },
       {
         name: "Canellini bonen",
         green: "76",
         orange: "89",
-        red: "100"
+        red: "100",
       },
       {
         name: "Edamame (sojabonen)",
         green: "90",
         orange: "210",
-        red: "-"
+        red: "-",
       },
       {
         name: "Falafel",
         green: "-",
         orange: "-",
-        red: "100"
+        red: "100",
       },
       {
         name: "Kidney bonen",
         green: "-",
         orange: "-",
-        red: "48"
+        red: "48",
       },
       {
         name: "Lima bonen",
         green: "39",
         orange: "54",
-        red: "79"
+        red: "79",
       },
       {
         name: "Linzen",
         green: "30",
         orange: "90",
-        red: "-"
+        red: "-",
       },
       {
         name: "Miso pasta",
         green: "12",
         orange: "75",
-        red: "-"
+        red: "-",
       },
       {
         name: "Mung bonen",
         green: "49",
         orange: "58",
-        red: "73"
+        red: "73",
       },
       {
         name: "Split erwten",
         green: "-",
         orange: "-",
-        red: "45"
+        red: "45",
       },
       {
         name: "Tofu",
         green: "75",
         orange: "-",
-        red: "150"
+        red: "150",
       },
       {
         name: "Vleesvervangers op sojabasis",
         green: "50",
         orange: "100",
-        red: "-"
+        red: "-",
       },
       {
         name: "Zwarte bonen",
         green: "45",
         orange: "-",
-        red: "105"
+        red: "105",
       },
-    ]
+    ],
   },
   {
     category: "Noten",
@@ -726,15 +739,15 @@ const data = [
         name: "Cashewnoten",
         green: "-",
         orange: "15",
-        red: "30"
+        red: "30",
       },
       {
         name: "Pistachenoten",
         green: "11",
         orange: "-",
-        red: "23"
+        red: "23",
       },
-    ]
+    ],
   },
 ];
 
@@ -742,6 +755,7 @@ const everything = data.flatMap(({ items }) => items);
 
 const fuse = new Fuse(everything, {
   keys: ["name"],
+  threshold: 0.4,
 });
 
 interface Fructan {
@@ -749,6 +763,7 @@ interface Fructan {
   green: string;
   orange: string;
   red: string;
+  annotation?: string;
 }
 
 export const SearchTable = () => {
@@ -758,12 +773,12 @@ export const SearchTable = () => {
   function onSearch(e: React.ChangeEvent<HTMLInputElement>) {
     setQuery(e.target.value);
 
-    const fuseResults = fuse.search(e.target.value).map(({ item }) => item)
+    const fuseResults = fuse.search(e.target.value).map(({ item }) => item);
 
     setResults(fuseResults);
   }
 
-  console.log('results', results)
+  console.log("results", results);
 
   return (
     <div className="flex flex-col gap-4">
@@ -779,33 +794,83 @@ export const SearchTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {results && query ?
-            results.map(({ name, green, orange, red }) => (
-              <TableRow key={name}>
-                <TableCell>{name}</TableCell>
-                <TableCell className="text-center text-green-600">{green}</TableCell>
-                <TableCell className="text-center text-orange-500">{orange}</TableCell>
-                <TableCell className="text-center text-red-500">{red}</TableCell>
-              </TableRow>
-            ))
-          : data.map(({ category, items }) => (
-            <Fragment key={category}>
-              <TableRow>
-                <TableCell colSpan={4} className="font-bold">
-                  {category}
-                </TableCell>
-              </TableRow>
-
-              {items.map(({ name, green, orange, red }) => (
+          {results && query
+            ? results.map(({ name, green, orange, red, annotation }) => (
                 <TableRow key={name}>
-                  <TableCell>{name}</TableCell>
-                  <TableCell className="text-center text-green-600">{green}</TableCell>
-                  <TableCell className="text-center text-orange-500">{orange}</TableCell>
-                  <TableCell className="text-center text-red-500">{red}</TableCell>
+                  <TableCell>
+                    <div className="flex items-center gap-1">
+                      {name}
+
+                      {annotation ? (
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <Button
+                              size="icon"
+                              variant="ghost"
+                              aria-label={`${name} annotation`}
+                            >
+                              <InfoCircledIcon />
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent>{annotation}</PopoverContent>
+                        </Popover>
+                      ) : null}
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-center text-green-600">
+                    {green}
+                  </TableCell>
+                  <TableCell className="text-center text-orange-500">
+                    {orange}
+                  </TableCell>
+                  <TableCell className="text-center text-red-500">
+                    {red}
+                  </TableCell>
                 </TableRow>
+              ))
+            : data.map(({ category, items }) => (
+                <Fragment key={category}>
+                  <TableRow>
+                    <TableCell colSpan={4} className="font-bold">
+                      {category}
+                    </TableCell>
+                  </TableRow>
+
+                  {items.map(({ name, green, orange, red, annotation }) => (
+                    <TableRow key={name}>
+                      <TableCell>
+                        <div className="flex items-center gap-1">
+                          {name}
+
+                          {annotation ? (
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <Button
+                                  size="icon"
+                                  variant="ghost"
+                                  aria-label={`${name} annotation`}
+                                >
+                                  <InfoCircledIcon />
+                                </Button>
+                              </PopoverTrigger>
+                              <PopoverContent>{annotation}</PopoverContent>
+                            </Popover>
+                          ) : null}
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-center text-green-600">
+                        {green}
+                      </TableCell>
+                      <TableCell className="text-center text-orange-500">
+                        {orange}
+                      </TableCell>
+                      <TableCell className="text-center text-red-500">
+                        {red}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </Fragment>
               ))}
-            </Fragment>
-          ))}
         </TableBody>
       </Table>
     </div>
